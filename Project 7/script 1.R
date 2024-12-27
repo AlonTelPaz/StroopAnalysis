@@ -73,4 +73,4 @@ summarise_pec <- data.frame(mean_rt = mean_rt, sd_rt = sd_rt)
 print(summarise_pec)
 
 #save data
-save (df, file = "./filtered_data.rdata")
+save (df, file = "./data/filtered_data.rdata")
