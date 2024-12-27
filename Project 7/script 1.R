@@ -1,9 +1,16 @@
 # R course for beginners
 # Week 7
 # assignment by Alon Tel-Paz, ID 208201095
+# in this code i combine all the data we measure in stroop effect experiment.
+# we filtered it and ignore NA data.
+# we calculate the percentage of NA data for each subject.
+# at the end we did a graph of the data.
+# Alon Tel-Paz write this code 21.12.24
+#### load data and build raw data & saving----
 
-#### load data and build raw data ----
 library ("dplyr")
+library ("ggplot2")
+library ("ggdist")
 sub_data <- dir ("data")
 df <- data.frame ()
 for (file in sub_data) {
@@ -73,4 +80,12 @@ summarise_pec <- data.frame(mean_rt = mean_rt, sd_rt = sd_rt)
 print(summarise_pec)
 
 #save data
-save (df, file = "./data/filtered_data.rdata")
+save (df, file = "./filtered_data.rdata")
+
+#### figure of the results ----
+ggplot (df, 
+        aes (x = rt,
+             y = congruency,
+             fill = task)
+        ) +
+  stat_halfeye()
